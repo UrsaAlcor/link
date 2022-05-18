@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -xe
+
+origin=$(pwd)
+# version=$(git describe --tags --abbrev=0)
+version=0.0.0
+
+install=$origin/lmod/dist/noarch/link/$version/bin
+module=$origin/lmod/modules/noarch/link/
+
+mkdir -p $install
+mkdir -p $module
+
+cp ld.lua $install/ld
+cp link.lua $module/$version.lua
+
+sed -i -e "s@\${package}@link@g" $module/$version.lua
+sed -i -e "s@\${version}@$version@g" $module/$version.lua
