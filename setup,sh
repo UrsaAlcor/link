@@ -3,8 +3,14 @@
 set -xe
 
 origin=$(pwd)
-# version=$(git describe --tags --abbrev=0)
-version=0.0.0
+commit=$(git rev-parse HEAD)
+version=$(git tag --points-at $commit)
+
+if [ "$version" == "" ]; then
+    echo "No tag found"
+    version="0.0.0"
+fi
+
 
 install=$origin/lmod/dist/noarch/link/$version/bin
 module=$origin/lmod/modules/noarch/link/
