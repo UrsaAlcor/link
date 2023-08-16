@@ -11,9 +11,8 @@ if [ "$version" == "" ]; then
     version="0.0.0"
 fi
 
-
 install=$origin/lmod/dist/noarch/link/$version/bin
-module=$origin/lmod/modules/noarch/link/
+module=$origin/lmod/modules/$(arch)/link/
 
 mkdir -p $install
 mkdir -p $module
