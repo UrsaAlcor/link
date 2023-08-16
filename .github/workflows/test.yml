@@ -25,7 +25,7 @@ jobs:
     - name: Install alcor
       run: |
         pip install git+https://github.com/UrsaAlcor/mocli.git
-        alcor init "$(pwd)/aclor"
+        alcor init "$(pwd)/aclorc"
         alcor activate --auto
 
     - name: Install linker
@@ -33,6 +33,6 @@ jobs:
         source /home/runner/.config/mocli/bashrc
         activate_alcor 
 
-        alcor install linker --url https://github.com/UrsaAlcor/linker/releases/download/v0.0.1/linker_x86_64.zip
-        module load linker
-        gcc tests/linker_main.c -o linker_main -llinker
+        alcor install link
+        module load link
+        which ld

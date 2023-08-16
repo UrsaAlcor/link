@@ -8,8 +8,26 @@ Load link; a ld wrapper for lmod
 local name = "${package}"
 local version = "${version}"
 
-local dist = os.getenv("ALCOR_DIST")
+function get_noarch_dist(root)
+    local frags = {}
 
+    for frag in string.gmatch(root, '/([a-zA-Z0-9]+)') do
+        table.insert(frags, frag)
+    end
+
+    table.remove(frags)
+    table.insert(frags, "noarch")
+
+    local absolute = root:sub(1, 1)
+    if absolute ~= '/' then
+        print(absolute)
+        absolute = ''
+    end
+
+    return absolute .. table.concat(frags, '/')
+end
+
+local dist = get_noarch_dist(os.getenv("ALCOR_DIST"))
 local path = pathJoin(dist, name, version)
 
 -- Binary folder
