@@ -35,4 +35,4 @@ jobs:
 
         alcor install linker --url https://github.com/UrsaAlcor/linker/releases/download/v0.0.1/linker_x86_64.zip
         module load linker
-        gcc tests/linker_main.c -o linker_main -llinker
+        which ld
